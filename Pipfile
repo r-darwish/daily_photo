@@ -1,5 +1,6 @@
 [packages]
 "python-telegram-bot" = "*"
+pillow = "*"
 
 [scripts]
 daily_photo = "python -m daily_photo"
