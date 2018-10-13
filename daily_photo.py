@@ -26,7 +26,7 @@ def main():
     chat_id = os.environ["DAILY_PHOTO_CHAT_ID"]
     bot = telegram.Bot(token=os.environ["DAILY_PHOTO_BOT_TOKEN"])
 
-    bot.send_photo(chat_id=chat_id, photo=_get_resized_photo(photo_path))
+    bot.send_photo(chat_id=chat_id, photo=_get_resized_photo(photo_path), timeout=180)
 
     os.unlink(photo_path)
 
