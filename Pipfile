@@ -1,6 +1,7 @@
 [packages]
 "python-telegram-bot" = "*"
 pillow = "*"
+sentry-sdk = "*"
 
 [scripts]
 daily_photo = "python -m daily_photo"
