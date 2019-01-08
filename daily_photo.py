@@ -7,6 +7,7 @@ from PIL import Image
 
 _PHOTO_SIZE_LIMIT = 10 * 1024 ** 2
 
+
 def _get_resized_photo(path):
     image = Image.open(path)
     image.thumbnail((1280, 720))
@@ -31,6 +32,7 @@ def main():
     bot.send_photo(chat_id=chat_id, photo=_get_resized_photo(photo_path), timeout=180)
 
     os.unlink(photo_path)
+
 
 if __name__ == '__main__':
     main()
