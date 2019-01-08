@@ -3,7 +3,7 @@ import os
 import random
 import sentry_sdk
 import telegram
-from PIL import Image
+from PIL import Image, ExifTags
 
 _PHOTO_SIZE_LIMIT = 10 * 1024 ** 2
 
@@ -11,6 +11,19 @@ _PHOTO_SIZE_LIMIT = 10 * 1024 ** 2
 def _get_resized_photo(path):
     image = Image.open(path)
     image.thumbnail((1080, 1080))
+
+    for orientation in ExifTags.TAGS.keys():
+        if ExifTags.TAGS[orientation] == 'Orientation':
+            exif = dict(image._getexif().items())
+
+            if exif[orientation] == 3:
+                image = image.rotate(180, expand=True)
+            elif exif[orientation] == 6:
+                image = image.rotate(270, expand=True)
+            elif exif[orientation] == 8:
+                image = image.rotate(90, expand=True)
+
+            break
 
     fp = io.BytesIO()
     image.save(fp, format="jpeg")
