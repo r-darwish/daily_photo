@@ -10,7 +10,7 @@ _PHOTO_SIZE_LIMIT = 10 * 1024 ** 2
 
 def _get_resized_photo(path):
     image = Image.open(path)
-    image.thumbnail((1280, 720))
+    image.thumbnail((1080, 1080))
 
     fp = io.BytesIO()
     image.save(fp, format="jpeg")
