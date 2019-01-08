@@ -13,9 +13,9 @@ You should [set up your Telegram bot](https://core.telegram.org/bots#6-botfather
 your desired channel or group. Then you should pick up the chat id from
 https://api.telegram.org/YOUR_TOKEN/getUpdates
 
-Define the following environment variable:
+Define the following environment variables:
 * DAILY_PHOTO_DIRECTORY - The directory containing the photos
-* DAILY_PHOTO_BOT_TOKEN - The token to your bot
+* DAILY_PHOTO_BOT_TOKEN - The token of your bot
 * DAILY_PHOTO_CHAT_ID - The chat ID of the group, channel or chat
 * *Optional* DAILY_PHOTO_SENTRY_DSN - A DSN for [Sentry](https://sentry.io/welcome/)
 
