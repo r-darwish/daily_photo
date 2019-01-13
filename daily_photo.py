@@ -16,11 +16,13 @@ def _get_resized_photo(path):
         if ExifTags.TAGS[orientation] == 'Orientation':
             exif = dict(image._getexif().items())
 
-            if exif[orientation] == 3:
+            orientation_value = exif.get(orientation)
+
+            if orientation_value == 3:
                 image = image.rotate(180, expand=True)
-            elif exif[orientation] == 6:
+            elif orientation_value == 6:
                 image = image.rotate(270, expand=True)
-            elif exif[orientation] == 8:
+            elif orientation_value == 8:
                 image = image.rotate(90, expand=True)
 
             break
