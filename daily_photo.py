@@ -1,6 +1,7 @@
 import io
 import os
-import random
+from random import choices
+import datetime
 import sentry_sdk
 import telegram
 from PIL import Image, ExifTags
@@ -33,9 +34,16 @@ def _get_resized_photo(path):
     return fp
 
 
+def _weight(f):
+    capture = datetime.datetime.strptime(Image.open(f)._getexif()[36867], '%Y:%m:%d %H:%M:%S')
+    return ((datetime.datetime.now() - capture).days + 1) ** 0.4
+
+
 def _get_photo_path():
     directory = os.environ["DAILY_PHOTO_DIRECTORY"]
-    return os.path.join(directory, random.choice(os.listdir(directory)))
+    files = [os.path.join(directory, p) for p in os.listdir(directory)]
+    weights = [_weight(f) for f in files]
+    return choices(files, weights=weights)[0]
 
 
 def main():
